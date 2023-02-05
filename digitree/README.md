@@ -1,12 +1,10 @@
-# Internet Pi
+# Project: Digi Tree
 
 [![CI](https://github.com/geerlingguy/internet-pi/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/internet-pi/actions?query=workflow%3ACI)
 
-**A Raspberry Pi Configuration for Internet connectivity**
+**The prototype for a much larger seed and tree**
 
-I have had a couple Pis doing random Internet-related duties for years. It's finally time to formalize their configs and make all the DNS/ad-blocking/monitoring stuff encapsulated into one Ansible project.
-
-So that's what this is.
+This is initially a modified version Jeff Geerling's "Internet Pi" and used as a learning project to figure out Ansible and what works and what doesn't.
 
 ## Features
 
