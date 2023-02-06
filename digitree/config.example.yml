@@ -48,3 +48,5 @@ airgradient_sensors:
 
 # Starlink configuration. (Also requires `monitoring_enable`)
 starlink_enable: false
+
+unstable_debian_enable: true
