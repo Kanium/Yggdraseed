@@ -1,10 +1,10 @@
 ---
-- name: Set up the Debian unstable repository
+- name: Set up Debian unstable repository
   become: true
-  debconf:
-    name: "APT::Default-Release"
-    value: "unstable"
-    vtype: "select"
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian/ unstable main contrib non-free"
+    state: present
+    filename: "/etc/apt/sources.list.d/unstable.list"
 
 - name: Pin Debian stable packages
   become: true
