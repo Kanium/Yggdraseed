@@ -80,11 +80,18 @@
       when: unstable_debian_enable
 
     # See: https://ceph.com/en/news/blog/2022/install-ceph-in-a-raspberrypi-4-cluster/
-    - name: Install cephadm (TODO).
-      meta: noop
+    - name: Install cephadm.
+      ansible.builtin.package:
+        name: cephadm
+        state: present
 
-    - name: Create the ceph cluster (TODO).
-      meta: noop
+    - name: Create the ceph cluster
+      become: true
+      command: cephadm bootstrap --mon-ip {{ mon_ip }}
+      register: ceph_cluster_creation
+      changed_when: ceph_cluster_creation.rc != 0
+      notify:
+        - reboot-pi
 
     - name: Retrieve the ceph pubkey.
       ansible.builtin.fetch:
