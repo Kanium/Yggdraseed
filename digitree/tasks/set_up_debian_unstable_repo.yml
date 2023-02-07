@@ -8,21 +8,19 @@
 
 - name: Pin Debian stable packages
   become: true
-  apt_preferences:
-    name: "Pin Debian stable packages"
-    package: "*"
-    pin: "release a=stable"
-    priority: "900"
-    filename: /etc/apt/preferences.d/pin_stable
+  debconf:
+    name: "apt/preferences"
+    question: "apt::default-release"
+    value: "stable"
+    vtype: "select"
 
 - name: Pin Debian unstable packages
   become: true
-  apt_preferences:
-    name: "Pin Debian unstable packages"
-    package: "*"
-    pin: "release a=unstable"
-    priority: "10"
-    filename: /etc/apt/preferences.d/pin_unstable
+  debconf:
+    name: "apt/preferences"
+    question: "apt::default-release"
+    value: "unstable"
+    vtype: "select"
   
 - name: Update package information
   become: true
