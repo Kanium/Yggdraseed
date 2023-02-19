@@ -1,0 +1,21 @@
+- name: Add Debian Unstable repository to Raspbian
+  apt_repository:
+    repo: 'deb http://deb.debian.org/debian/ unstable main contrib non-free'
+    state: present
+
+- name: Set Pin Priority for Debian Unstable repository
+  lineinfile:
+    dest: '/etc/apt/preferences.d/99pin-unstable'
+    line: |
+      Package: *
+      Pin: release a=stable
+      Pin-Priority: 900
+      
+      Package: *
+      Pin: release a=unstable
+      Pin-Priority: 10
+    state: present
+
+- name: Update Package List
+  apt:
+    update_cache: no

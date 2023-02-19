@@ -49,4 +49,7 @@ airgradient_sensors:
 # Starlink configuration. (Also requires `monitoring_enable`)
 starlink_enable: false
 
+
+# Cephadmin configuration
 unstable_debian_enable: true
+mon_ip: 192.168.1.30
