@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  gitea-server:
+    image: gitea/gitea:1.19.0
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: on-failure
+    volumes:
+      - gitea-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "222:22"
+
+  backup:
+    image: offen/docker-volume-backup:latest
+    restart: always
+    env_file: ./backup.env
+    volumes:
+      - gitea-data:/backup/gitea-data:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /path/to/local_backups:/archive
+
+volumes:
+  gitea-data
